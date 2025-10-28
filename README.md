@@ -1,20 +1,17 @@
 # WhatsApp Client Service
 
-Service untuk mengirim notifikasi WhatsApp.
-
 ## Tech Stack
 
 - **TypeScript** - Type-safe JavaScript
 - **Express.js** - Web framework
 - **WhatsApp Web.js** - WhatsApp Web API
 - **Prisma** - ORM Database
-- **Node-cron** - Scheduler untuk reminder
 
 ## Prerequisites
 
 - Node.js >= 18.x
 - npm atau yarn
-- Database (sesuai dengan Prisma schema)
+- Database 
 
 ## Installation
 
