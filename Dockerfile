@@ -14,7 +14,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 
-RUN npm ci --only=production && \
+RUN npm install && \
     npm cache clean --force
 
 COPY . .
@@ -44,7 +44,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci --only=production && \
+RUN npm install --production && \
     npm cache clean --force
 
 COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
