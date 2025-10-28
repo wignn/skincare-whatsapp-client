@@ -1,0 +1,47 @@
+# Node modules
+node_modules
+npm-debug.log
+
+# TypeScript source (we only need the built dist)
+src
+
+# Development files
+*.md
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Build files
+dist
+
+# Logs
+logs
+*.log
+
+# Test files
+test
+tests
+*.test.ts
+*.spec.ts
+
+# Documentation
+docs
+
+# Development tools
+.eslintrc*
+.prettierrc*
+tsconfig.json
+nodemon.json
+
+# OS files
+.DS_Store
+Thumbs.db
