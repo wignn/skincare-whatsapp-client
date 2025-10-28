@@ -17,8 +17,6 @@ services:
       - app-network
     cap_add:
       - SYS_ADMIN
-    depends_on:
-      - db
 
 
 volumes:
