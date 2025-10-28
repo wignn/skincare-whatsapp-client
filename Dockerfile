@@ -19,7 +19,6 @@ RUN npm install && \
 
 COPY . .
 
-# Set dummy DATABASE_URL for Prisma generate (not used, just required)
 ENV DATABASE_URL="mysql://dummy:dummy@localhost:3306/dummy"
 
 RUN npx prisma generate
