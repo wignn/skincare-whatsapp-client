@@ -14,10 +14,6 @@ export interface AppConfig {
       args: string[];
     };
   };
-  cron: {
-    billingReminderSchedule: string;
-    timezone: string;
-  };
 }
 
 export const config: AppConfig = {
@@ -31,11 +27,16 @@ export const config: AppConfig = {
   whatsapp: {
     puppeteerOptions: {
       headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-accelerated-2d-canvas",
+        "--no-first-run",
+        "--no-zygote",
+        "--disable-gpu",
+        "--disable-software-rasterizer",
+      ],
     },
-  },
-  cron: {
-    billingReminderSchedule: "0 52 18 * * *", // 18:52 WIB
-    timezone: "Asia/Jakarta",
   },
 };

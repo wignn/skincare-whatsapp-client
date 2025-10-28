@@ -16,8 +16,10 @@ async function bootstrap(): Promise<void> {
 
     setupGracefulShutdown();
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    logger.error("Error starting server:", errorMessage);
+    logger.error("Error starting server:", error);
+    if (error instanceof Error) {
+      logger.error("Error stack:", error.stack);
+    }
     process.exit(1);
   }
 }
@@ -32,8 +34,10 @@ function setupGracefulShutdown(): void {
       console.log("Graceful shutdown completed");
       process.exit(0);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Unknown error";
-      logger.error("Error starting server:", errorMessage);
+      logger.error("Error during shutdown:", error);
+      if (error instanceof Error) {
+        logger.error("Error stack:", error.stack);
+      }
       process.exit(1);
     }
   };

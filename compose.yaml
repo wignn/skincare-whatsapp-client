@@ -17,6 +17,13 @@ services:
       - app-network
     cap_add:
       - SYS_ADMIN
+    shm_size: '2gb'
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
 
 
 volumes:
