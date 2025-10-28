@@ -2,9 +2,6 @@
 node_modules
 npm-debug.log
 
-# TypeScript source (we only need the built dist)
-src
-
 # Development files
 *.md
 .git
@@ -20,7 +17,7 @@ src
 *.swo
 *~
 
-# Build files
+# Build files (will be rebuilt in Docker)
 dist
 
 # Logs
@@ -36,10 +33,9 @@ tests
 # Documentation
 docs
 
-# Development tools
+# Development tools (keep tsconfig.json for build)
 .eslintrc*
 .prettierrc*
-tsconfig.json
 nodemon.json
 
 # OS files
