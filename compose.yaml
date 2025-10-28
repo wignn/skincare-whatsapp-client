@@ -20,26 +20,8 @@ services:
     depends_on:
       - db
 
-  db:
-    image: mysql:8.0
-    container_name: skincare-mysql
-    restart: unless-stopped
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpassword}
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-skincare_db}
-      - MYSQL_USER=${MYSQL_USER:-skincare_user}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-skincare_password}
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - app-network
-    command: --default-authentication-plugin=mysql_native_password
 
 volumes:
-  mysql-data:
-    driver: local
   whatsapp-session:
     driver: local
   whatsapp-cache:
