@@ -1,0 +1,3 @@
+[submodule "skincare-catalog"]
+	path = skincare-catalog
+	url = https://github.com/wignn/skincare-catalog.git
