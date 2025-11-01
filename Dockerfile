@@ -1,7 +1,5 @@
-# Stage 1: Build
 FROM node:20-alpine AS builder
 
-# Install build dependencies
 RUN apk add --no-cache \
     python3 \
     make \
@@ -9,28 +7,23 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-COPY package*.json ./
-COPY prisma ./prisma/
+COPY ./skincare-whatsapp-client/package*.json ./
+COPY ./skincare-whatsapp-client/prisma ./prisma/
 
-# Install all dependencies (including dev dependencies for building)
 RUN npm install && \
     npm cache clean --force
 
-COPY . .
+COPY ./skincare-whatsapp-client ./
 
-# Set dummy DATABASE_URL for Prisma generate
 ENV DATABASE_URL="mysql://dummy:dummy@localhost:3306/dummy"
 
-# Generate Prisma Client
 RUN npx prisma generate
 
-# Build TypeScript
 RUN npm run build
 
 # Stage 2: Production
 FROM node:20-alpine
 
-# Install Chromium and required dependencies
 RUN apk add --no-cache \
     chromium \
     nss \
@@ -44,22 +37,18 @@ RUN apk add --no-cache \
     tini \
     dumb-init
 
-# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
     CHROME_BIN=/usr/bin/chromium-browser \
     CHROME_PATH=/usr/lib/chromium/
 
-# Create app user
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nodejs -u 1001
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+COPY ./skincare-whatsapp-client/package*.json ./
 
-# Install only production dependencies
 RUN npm install --production && \
     npm cache clean --force
 
