@@ -72,7 +72,7 @@ export {
 export function metricsEndpoint() {
   const router = express.Router();
 
-  router.get('/metrics', async (req, res) => {
+  router.get('/metrics', async (_, res) => {
     try {
       res.set('Content-Type', register.contentType);
       const metrics = await register.metrics();
@@ -82,7 +82,7 @@ export function metricsEndpoint() {
     }
   });
 
-  router.get('/health', (req, res) => {
+  router.get('/health', (_, res) => {
     res.json({
       status: 'healthy',
       timestamp: new Date().toISOString(),
@@ -91,13 +91,13 @@ export function metricsEndpoint() {
     });
   });
 
-  router.get('/ready', (req, res) => {
+  router.get('/ready', (_, res) => {
     // Check if service is ready to accept traffic
     // You can add database connection check here
     res.json({ status: 'ready' });
   });
 
-  router.get('/alive', (req, res) => {
+  router.get('/alive', (_, res) => {
     res.json({ status: 'alive' });
   });
 
