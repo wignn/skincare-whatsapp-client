@@ -1,13 +1,11 @@
 import { Express } from "express";
 import { config } from "../config";
 import { messageRoutes } from "./message.routes";
+import { metricsEndpoint } from "../metrics";
 
 export const setupRoutes = (app: Express): void => {
-  // Health check
-  app.get("/health", (_, res) => {
-    res.json({ status: "ok", timestamp: new Date().toISOString() });
-  });
-
+  // Metrics and health endpoints
+  app.use(metricsEndpoint());
 
   // API routes
   app.use(`${config.server.basePath}`, messageRoutes);
